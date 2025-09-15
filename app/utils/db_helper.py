@@ -40,7 +40,9 @@ class DatabaseHelper:
         async with self.session_factory() as session:
             yield session
 
-
+import os
+print(os.getcwd())
+print(settings.database.url)
 
 db_helper = DatabaseHelper(
     url=str(settings.database.url),

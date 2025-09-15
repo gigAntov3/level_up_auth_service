@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-from models.base import Base
+from models import Base
 
 from core.config import settings
 
@@ -30,7 +30,7 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-config.set_main_option("sqlalchemy.url", str(settings.database.url))
+config.set_main_option("sqlalchemy.url", "postgresql+asyncpg://user:password@localhost:5432/shop")
 
 
 def run_migrations_offline() -> None:
