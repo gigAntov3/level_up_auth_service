@@ -36,14 +36,14 @@ class DatabaseHelper:
     async def dispose(self) -> None:
         await self.engine.dispose()
 
-    async def session_getter(self) -> AsyncGenerator[AsyncSession, None, None]:
+    async def session_getter(self) -> AsyncGenerator[AsyncSession, None]:
         async with self.session_factory() as session:
             yield session
 
 
 
-base = DatabaseHelper(
-    url=settings.database.url,
+db_helper = DatabaseHelper(
+    url=str(settings.database.url),
     echo=settings.database.echo,
     echo_pool=settings.database.echo_pool,
     pool_size=settings.database.pool_size,
